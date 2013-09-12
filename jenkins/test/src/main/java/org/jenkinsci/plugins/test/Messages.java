@@ -12,7 +12,7 @@ public class Messages {
         return DisplayText;
     }
 
-    public static String UrlName() {
+    public static String Url() {
         return Url;
     }
 

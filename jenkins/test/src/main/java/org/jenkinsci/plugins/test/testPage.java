@@ -25,7 +25,7 @@ public class testPage extends Plugin{
         }
 
         public String getUrlName() {
-            return "/plugin/disk-usage/";
+            return Messages.Url();
         }
     }
 }
