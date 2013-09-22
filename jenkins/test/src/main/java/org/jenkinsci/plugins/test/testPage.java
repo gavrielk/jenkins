@@ -6,6 +6,7 @@ package org.jenkinsci.plugins.test;
 
 import hudson.Extension;
 import hudson.Plugin;
+import hudson.model.ManagementLink;
 import hudson.model.RootAction;
 
 /**
@@ -13,11 +14,17 @@ import hudson.model.RootAction;
  * @author gabi
  */
 public class testPage extends Plugin{
+    
+    public String getMyString() {
+    return "Hello Jenkins!";
+}
+    
+    
         @Extension
-    public static class DiskUsageRootLink implements RootAction {
+    public static class TestRootLink implements RootAction {
 
     	public String getIconFileName() {
-            return "/plugin/disk-usage/icons/diskusage48.png";
+            return "/plugin/test/icons/diskusage48.png";
         }
 
         public String getDisplayName() {
@@ -26,6 +33,29 @@ public class testPage extends Plugin{
 
         public String getUrlName() {
             return Messages.Url();
+        }
+    }
+        
+        
+    @Extension
+    public static class DiskUsageManagementLink extends ManagementLink {
+
+        public final String[] COLUMNS = new String[]{"Project name", "Builds", "Workspace"};
+
+        public String getIconFileName() {
+            return "/plugin/test/icons/diskusage48.png";
+        }
+
+        public String getDisplayName() {
+            return Messages.DisplayName() + "_Management";
+        }
+
+        public String getUrlName() {
+            return Messages.Url();
+        }
+
+        @Override public String getDescription() {
+            return Messages.Description();
         }
     }
 }
