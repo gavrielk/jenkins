@@ -8,6 +8,11 @@ import hudson.Extension;
 import hudson.Plugin;
 import hudson.model.ManagementLink;
 import hudson.model.RootAction;
+import hudson.security.AccessControlled;
+import hudson.security.Permission;
+import jenkins.model.Jenkins;
+import org.acegisecurity.AccessDeniedException;
+import org.apache.log4j.Logger;
 
 /**
  *
@@ -16,7 +21,21 @@ import hudson.model.RootAction;
 public class testPage extends Plugin{
     
     public String getMyString() {
-    return "Hello Jenkins!";
+        String output = "";
+        for ( Permission permission : Permission.getAll())
+        {
+            boolean isAuthorized = Jenkins.getInstance().hasPermission(permission);
+            if (isAuthorized == true)
+            {
+                output = output.concat(permission.name + "=true\r\n");
+            }
+            else
+            {
+                output = output.concat(permission.name + "=false\r\n");
+            }
+        }
+            
+        return output;
 }
     
     
@@ -28,6 +47,14 @@ public class testPage extends Plugin{
         }
 
         public String getDisplayName() {
+            
+            try{
+                Jenkins.getInstance().checkPermission(Permission.READ);
+            }
+            catch (AccessDeniedException ade)
+            {
+                return "Access denied";
+            }
             return Messages.DisplayName();
         }
 
