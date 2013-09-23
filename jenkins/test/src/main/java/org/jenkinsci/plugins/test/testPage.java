@@ -27,11 +27,13 @@ public class testPage extends Plugin{
             boolean isAuthorized = Jenkins.getInstance().hasPermission(permission);
             if (isAuthorized == true)
             {
-                output = output.concat(permission.name + "=true\r\n");
+                output = output.concat(permission.name + "(" + 
+                        permission.group.title.toString() + ")" + "=true<br>");
             }
             else
             {
-                output = output.concat(permission.name + "=false\r\n");
+                output = output.concat(permission.name + "(" + 
+                        permission.group.title.toString() + ")" + "=false<br>");
             }
         }
             
@@ -47,15 +49,21 @@ public class testPage extends Plugin{
         }
 
         public String getDisplayName() {
-            
-            try{
-                Jenkins.getInstance().checkPermission(Permission.READ);
-            }
-            catch (AccessDeniedException ade)
+            boolean found = false;
+            for ( Permission permission : Permission.getAll())
             {
-                return "Access denied";
+                boolean isAuthorized = Jenkins.getInstance().hasPermission(permission);
+                boolean isInOverallGroup = permission.group.title.toString().matches("Overall");
+                if (isAuthorized == true && isInOverallGroup == true)
+                {
+                    found = true;
+                    break;
+                }
             }
-            return Messages.DisplayName();
+            if (found == true)
+                return Messages.DisplayName();
+            else
+                return "Access denied";
         }
 
         public String getUrlName() {
