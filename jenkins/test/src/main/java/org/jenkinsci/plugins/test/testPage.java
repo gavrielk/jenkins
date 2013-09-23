@@ -53,7 +53,7 @@ public class testPage extends Plugin{
             for ( Permission permission : Permission.getAll())
             {
                 boolean isAuthorized = Jenkins.getInstance().hasPermission(permission);
-                boolean isInOverallGroup = permission.group.title.toString().matches("Overall");
+                boolean isInOverallGroup = permission.group.title.toString().matches("Job");
                 if (isAuthorized == true && isInOverallGroup == true)
                 {
                     found = true;
