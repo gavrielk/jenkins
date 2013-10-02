@@ -1,0 +1,14 @@
+<j:jelly xmlns:j="jelly:core" xmlns:st="jelly:stapler" xmlns:d="jelly:define" xmlns:l="/lib/layout" xmlns:t="/lib/hudson" xmlns:f="/lib/form" xmlns:i="jelly:fmt">
+<l:layout title="${%Test plugin}" secured="true">
+    <l:main-panel>
+        <form>
+            <table>
+                <f:entry title="Enter name:" field="name">
+                    <f:textbox />
+                </f:entry>
+            </table>
+        </form>
+        <!-- <H1>${it.myString}</H1> -->
+    </l:main-panel>
+</l:layout>
+</j:jelly>

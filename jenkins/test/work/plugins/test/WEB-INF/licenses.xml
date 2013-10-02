@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<l:dependencies xmlns:l='licenses' groupId='org.jenkins-ci.plugins' artifactId='test' version='1.0-SNAPSHOT'><l:dependency name='test' groupId='org.jenkins-ci.plugins' artifactId='test' version='1.0-SNAPSHOT' url='http://jenkins-ci.org/plugin/test/'><l:description/></l:dependency></l:dependencies>

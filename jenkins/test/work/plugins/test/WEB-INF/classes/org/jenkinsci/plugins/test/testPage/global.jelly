@@ -1,0 +1,10 @@
+<j:jelly xmlns:j="jelly:core" xmlns:st="jelly:stapler" xmlns:d="jelly:define" xmlns:l="/lib/layout" xmlns:t="/lib/hudson" xmlns:f="/lib/form">
+<!--    
+    <f:section title="Get Name">
+        <f:entry title="Enter name:">
+            <f:textbox field="nameTextBox"/>
+        </f:entry>
+        <f:validateButton title="Save" progress="Saving..." method="saveName" with="nameTextBox" value="${%Save}" />
+    </f:section>
+-->
+</j:jelly>
